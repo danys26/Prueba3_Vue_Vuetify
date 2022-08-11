@@ -1914,31 +1914,75 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("v-app", [_c("v-row", {
+  return _c("v-app", [_c("v-container", {
+    staticClass: "fill-height",
+    attrs: {
+      fluid: ""
+    }
+  }, [_c("v-row", {
+    attrs: {
+      align: "center",
+      justify: "center"
+    }
+  }, [_c("v-col", {
+    attrs: {
+      cols: "12",
+      sm: "8",
+      md: "4"
+    }
+  }, [_c("v-card", {
+    attrs: {
+      dark: "",
+      width: "600"
+    }
+  }, [_c("v-card-title", [_vm._v(" Suma de dos numeros")]), _vm._v(" "), _c("v-card-text", [_c("v-text-field", {
+    attrs: {
+      label: "Introduzca un numero",
+      solo: ""
+    },
+    model: {
+      value: _vm.num1,
+      callback: function callback($$v) {
+        _vm.num1 = _vm._n($$v);
+      },
+      expression: "num1"
+    }
+  }), _vm._v(" "), _c("v-text-field", {
+    attrs: {
+      label: "Introduzca un numero",
+      solo: ""
+    },
+    model: {
+      value: _vm.num2,
+      callback: function callback($$v) {
+        _vm.num2 = _vm._n($$v);
+      },
+      expression: "num2"
+    }
+  })], 1), _vm._v(" "), _c("v-card-actions", [_c("v-row", {
     attrs: {
       align: "center",
       justify: "space-around"
     }
   }, [_c("v-btn", {
     attrs: {
-      depressed: ""
-    }
-  }, [_vm._v("\n     Normal\n   ")]), _vm._v(" "), _c("v-btn", {
-    attrs: {
-      depressed: "",
       color: "primary"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.sumar();
+      }
     }
-  }, [_vm._v("\n     Primary\n   ")]), _vm._v(" "), _c("v-btn", {
+  }, [_vm._v("Suma")]), _vm._v(" "), _c("v-btn", {
     attrs: {
-      depressed: "",
-      color: "error"
+      color: "primary"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.limpiar();
+      }
     }
-  }, [_vm._v("\n     Error\n   ")]), _vm._v(" "), _c("v-btn", {
-    attrs: {
-      depressed: "",
-      disabled: ""
-    }
-  }, [_vm._v("\n     Disabled\n   ")])], 1)], 1);
+  }, [_vm._v("Limpiar")])], 1)], 1), _vm._v(" "), _c("v-card-text", [_c("span", [_vm._v(" Resultado: " + _vm._s(_vm.suma) + " ")])])], 1)], 1)], 1)], 1)], 1);
 };
 
 var staticRenderFns = [];
@@ -1959,8 +2003,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      prueba: 'Hola mundo'
+      presionar: false,
+      cards: [{
+        title: 'Pre-fab homes',
+        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
+        flex: 12
+      }, {
+        title: 'Favorite road trips',
+        src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
+        flex: 6
+      }, {
+        title: 'Best airlines',
+        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+        flex: 6
+      }],
+      suma: 0
     };
+  },
+  methods: {
+    sumar: function sumar() {
+      console.log("Hola mundo 1");
+      this.suma = this.num1 + this.num2;
+    },
+    limpiar: function limpiar() {
+      console.log("Hola mundo 2");
+      this.suma = 0;
+    }
   }
 });
 
@@ -76708,7 +76776,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
 /* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
 
 
@@ -76732,7 +76802,14 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VRow"]})
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_8__["VTextField"]})
 
 
 /* hot reload */
