@@ -1938,7 +1938,8 @@ var render = function render() {
   }, [_c("v-card-title", [_vm._v(" Suma de dos numeros")]), _vm._v(" "), _c("v-card-text", [_c("v-text-field", {
     attrs: {
       label: "Introduzca un numero",
-      solo: ""
+      solo: "",
+      clearable: ""
     },
     model: {
       value: _vm.num1,
@@ -1982,7 +1983,85 @@ var render = function render() {
         return _vm.limpiar();
       }
     }
-  }, [_vm._v("Limpiar")])], 1)], 1), _vm._v(" "), _c("v-card-text", [_c("span", [_vm._v(" Resultado: " + _vm._s(_vm.suma) + " ")])])], 1)], 1)], 1)], 1)], 1);
+  }, [_vm._v("Limpiar")])], 1)], 1), _vm._v(" "), _c("v-card-text", [_c("span", [_vm._v(" Resultado: " + _vm._s(_vm.suma) + " ")]), _vm._v(" "), _c("v-text-field", {
+    attrs: {
+      "append-icon": "mdi-magnify",
+      label: "Buscar...",
+      "single-line": "",
+      "hide-details": ""
+    },
+    model: {
+      value: _vm.search,
+      callback: function callback($$v) {
+        _vm.search = $$v;
+      },
+      expression: "search"
+    }
+  }), _vm._v(" "), _c("v-data-table", {
+    staticClass: "elevation-1",
+    attrs: {
+      headers: _vm.headers,
+      items: _vm.infoSuma,
+      "items-per-page": 5,
+      search: _vm.search
+    },
+    scopedSlots: _vm._u([{
+      key: "item.actions",
+      fn: function fn(_ref) {
+        var item = _ref.item;
+        return [_c("v-tooltip", {
+          attrs: {
+            bottom: ""
+          },
+          scopedSlots: _vm._u([{
+            key: "activator",
+            fn: function fn(_ref2) {
+              var on = _ref2.on,
+                  attrs = _ref2.attrs;
+              return [_c("v-btn", _vm._g(_vm._b({
+                attrs: {
+                  icon: ""
+                },
+                on: {
+                  click: function click($event) {
+                    return _vm.monstrartDialogo();
+                  }
+                }
+              }, "v-btn", attrs, false), on), [_c("v-icon", {
+                attrs: {
+                  dark: "",
+                  color: "orange darken-1"
+                }
+              }, [_vm._v("\n                                                mdi-pencil\n                                            ")])], 1)];
+            }
+          }], null, true)
+        }, [_vm._v(" "), _c("span", [_vm._v("Editar")])])];
+      }
+    }])
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c("v-dialog", {
+    attrs: {
+      "max-width": "1000"
+    },
+    model: {
+      value: _vm.dialog,
+      callback: function callback($$v) {
+        _vm.dialog = $$v;
+      },
+      expression: "dialog"
+    }
+  }, [_c("v-card", [_c("v-card-title", {
+    staticClass: "text-h5 grey lighten-2"
+  }, [_vm._v("\n                                        Dialog de Prueba\n                                    ")]), _vm._v(" "), _c("v-card-text", [_vm._v("\n                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                                    ")]), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
+    attrs: {
+      color: "primary",
+      text: ""
+    },
+    on: {
+      click: function click($event) {
+        _vm.dialog = false;
+      }
+    }
+  }, [_vm._v("\n                                        Salir\n                                    ")])], 1)], 1)], 1)], 1)], 1);
 };
 
 var staticRenderFns = [];
@@ -2003,31 +2082,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      presionar: false,
-      cards: [{
-        title: 'Pre-fab homes',
-        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        flex: 12
+      search: '',
+      headers: [{
+        text: 'Numero 1',
+        value: 'numero1'
       }, {
-        title: 'Favorite road trips',
-        src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
-        flex: 6
+        text: 'Numero 2',
+        value: 'numero2'
       }, {
-        title: 'Best airlines',
-        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 6
+        text: 'Suma',
+        value: 'suma'
+      }, {
+        text: 'Acciones',
+        value: 'actions'
       }],
-      suma: 0
+      presionar: false,
+      infoSuma: [],
+      suma: 0,
+      dialog: false
     };
   },
   methods: {
     sumar: function sumar() {
       console.log("Hola mundo 1");
       this.suma = this.num1 + this.num2;
+      this.infoSuma.push({
+        numero1: this.num1,
+        numero2: this.num1,
+        suma: this.suma
+      });
+      console.log(this.infoSuma);
     },
     limpiar: function limpiar() {
       console.log("Hola mundo 2");
       this.suma = 0;
+    },
+    monstrartDialogo: function monstrartDialogo() {
+      console.log("Funciona");
+      this.dialog = true;
     }
   }
 });
@@ -76778,7 +76870,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
 /* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
+/* harmony import */ var vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDialog */ "./node_modules/vuetify/lib/components/VDialog/index.js");
+/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var vuetify_lib_components_VTooltip__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VTooltip */ "./node_modules/vuetify/lib/components/VTooltip/index.js");
 
 
 
@@ -76809,7 +76906,13 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_8__["VTextField"]})
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDataTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_8__["VDataTable"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_9__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_10__["VDivider"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_12__["VTextField"],VTooltip: vuetify_lib_components_VTooltip__WEBPACK_IMPORTED_MODULE_13__["VTooltip"]})
 
 
 /* hot reload */
