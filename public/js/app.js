@@ -1935,7 +1935,7 @@ var render = function render() {
       dark: "",
       width: "600"
     }
-  }, [_c("v-card-title", [_vm._v(" Suma de dos numeros")]), _vm._v(" "), _c("v-card-text", [_c("v-text-field", {
+  }, [_c("v-card-title", [_vm._v(" Calculadora")]), _vm._v(" "), _c("v-card-text", [_c("v-text-field", {
     attrs: {
       type: "number",
       label: "Introduzca un numero",
@@ -77002,8 +77002,8 @@ var opts = {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/danysnavarro/PROYECTOS/Prueba3/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/danysnavarro/PROYECTOS/Prueba3/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/nezuna/laravel/Prueba3_Vue_Vuetify/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/nezuna/laravel/Prueba3_Vue_Vuetify/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
