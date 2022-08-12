@@ -19,8 +19,8 @@
                         <v-card-title> Suma de dos numeros</v-card-title>
 
                         <v-card-text>
-                            <v-text-field v-model.number="num1" label="Introduzca un numero" solo clearable></v-text-field>
-                            <v-text-field v-model.number="num2" label="Introduzca un numero" solo></v-text-field>
+                            <v-text-field type="number" v-model="num1" label="Introduzca un numero" solo clearable></v-text-field>
+                            <v-text-field type="number" v-model="num2" label="Introduzca un numero" solo></v-text-field>
                         </v-card-text>
 
                         <v-card-actions>
@@ -59,7 +59,7 @@
                                 <template v-slot:item.actions="{ item }">
                                     <v-tooltip bottom>
                                         <template v-slot:activator="{ on, attrs }">
-                                            <v-btn icon @click="monstrartDialogo()"
+                                            <v-btn icon @click="mostrarDialogo(item)"
                                                 v-bind="attrs"
                                                 v-on="on">
                                                 <v-icon dark color="orange darken-1">
@@ -116,23 +116,31 @@
         presionar:false,
         infoSuma: [],
         suma: 0,
+        num1:0,
+        num2:0,
         dialog: false,
+        seleccionado:{}
     }),
 
     methods:{
         sumar(){
             console.log("Hola mundo 1");
             this.suma=this.num1+this.num2;
-            this.infoSuma.push({numero1: this.num1,numero2: this.num1,suma:this.suma});
+            this.infoSuma.push({numero1: this.num1,numero2: this.num2,suma:this.suma});
             console.log(this.infoSuma);
         },
         limpiar(){
         console.log("Hola mundo 2");
             this.suma=0;
+            this.num1=0;
+            this.num2=0;
         },
-        monstrartDialogo(){
-            console.log("Funciona");
-            this.dialog=true;
+        mostrarDialogo(item){
+            console.log(item);
+            //this.dialog=true;
+            this.seleccionado=item;
+            this.num1=item.numero1;
+            this.num2=item.numero2;
         }
     }
   }

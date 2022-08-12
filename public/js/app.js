@@ -1937,6 +1937,7 @@ var render = function render() {
     }
   }, [_c("v-card-title", [_vm._v(" Suma de dos numeros")]), _vm._v(" "), _c("v-card-text", [_c("v-text-field", {
     attrs: {
+      type: "number",
       label: "Introduzca un numero",
       solo: "",
       clearable: ""
@@ -1944,19 +1945,20 @@ var render = function render() {
     model: {
       value: _vm.num1,
       callback: function callback($$v) {
-        _vm.num1 = _vm._n($$v);
+        _vm.num1 = $$v;
       },
       expression: "num1"
     }
   }), _vm._v(" "), _c("v-text-field", {
     attrs: {
+      type: "number",
       label: "Introduzca un numero",
       solo: ""
     },
     model: {
       value: _vm.num2,
       callback: function callback($$v) {
-        _vm.num2 = _vm._n($$v);
+        _vm.num2 = $$v;
       },
       expression: "num2"
     }
@@ -2024,7 +2026,7 @@ var render = function render() {
                 },
                 on: {
                   click: function click($event) {
-                    return _vm.monstrartDialogo();
+                    return _vm.mostrarDialogo(item);
                   }
                 }
               }, "v-btn", attrs, false), on), [_c("v-icon", {
@@ -2099,7 +2101,10 @@ __webpack_require__.r(__webpack_exports__);
       presionar: false,
       infoSuma: [],
       suma: 0,
-      dialog: false
+      num1: 0,
+      num2: 0,
+      dialog: false,
+      seleccionado: {}
     };
   },
   methods: {
@@ -2108,7 +2113,7 @@ __webpack_require__.r(__webpack_exports__);
       this.suma = this.num1 + this.num2;
       this.infoSuma.push({
         numero1: this.num1,
-        numero2: this.num1,
+        numero2: this.num2,
         suma: this.suma
       });
       console.log(this.infoSuma);
@@ -2116,10 +2121,15 @@ __webpack_require__.r(__webpack_exports__);
     limpiar: function limpiar() {
       console.log("Hola mundo 2");
       this.suma = 0;
+      this.num1 = 0;
+      this.num2 = 0;
     },
-    monstrartDialogo: function monstrartDialogo() {
-      console.log("Funciona");
-      this.dialog = true;
+    mostrarDialogo: function mostrarDialogo(item) {
+      console.log(item); //this.dialog=true;
+
+      this.seleccionado = item;
+      this.num1 = item.numero1;
+      this.num2 = item.numero2;
     }
   }
 });
