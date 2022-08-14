@@ -16,7 +16,7 @@
                     <v-card
                     dark width=600
                     >
-                        <v-card-title> Calculadora</v-card-title>
+                        <v-card-title> Calculador cientifica</v-card-title>
 
                         <v-card-text>
                             <v-text-field type="number" v-model="num1" label="Introduzca un numero" solo clearable></v-text-field>
